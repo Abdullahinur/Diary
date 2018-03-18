@@ -1,0 +1,19 @@
+  <div id="instructions" class="container paper">
+    <div class="col-md-12"  *ngFor="let journal of journals;let i = 'index'">
+      <div class="row">
+        <p id="{{i}}" appHighlight>{{journal.name}} on {{journal.completeDate|date}}</p>
+        <button  class="btn" (click)='toogleDetails(i)'>Toogle Details</button>
+      </div>
+
+      <div class="row" *ngIf="journal.showDescription">
+      <app-journal-details [journal]='journal' (isComplete)= 'deleteJournal($event,i)'></app-journal-details>
+
+      </div>
+    </div>
+
+  </div>
+  <div id="form-color" class="container">
+    <div class="row">
+      <app-journal-form (addJournal)="addNewJournal($event)"></app-journal-form>
+    </div>
+  </div>
